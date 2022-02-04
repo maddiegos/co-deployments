@@ -64,7 +64,9 @@ spec:
           args:
             - "--v=5"
             - "--csi-address=$(ADDRESS)"
-            - "--timeout=180s"
+            {{- if .Values.csiAttacherTimeout }}
+            - "--timeout={{ .Values.csiAttacherTimeout }}s"
+            {{- end }}
           env:
             - name: ADDRESS
               value: /var/lib/csi/sockets/pluginproxy/csi.sock
@@ -129,9 +131,7 @@ spec:
             - "--flavor=kubernetes"
             - "--pod-monitor"
             - "--pod-monitor-interval=30"
-            {{- if .Values.cspClientTimeout }}
-            - "--csp-client-timeout={{ .Values.cspClientTimeout }}s"
-            {{- end }}
+            - "--csp-client-timeout=360s"
           env:
             - name: CSI_ENDPOINT
               value: unix:///var/lib/csi/sockets/pluginproxy/csi.sock

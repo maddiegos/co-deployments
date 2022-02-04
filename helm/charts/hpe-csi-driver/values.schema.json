@@ -21,7 +21,7 @@
             "registry": "quay.io",
             "kubeletRootDir": "/var/lib/kubelet/",
             "disableNodeGetVolumeStats": false,
-            "cspClientTimeout": 60
+            "csiAttacherTimeout": 180
         },
     "required": [
         "disable",
@@ -32,7 +32,7 @@
         "registry",
         "kubeletRootDir",
         "disableNodeGetVolumeStats",
-        "cspClientTimeout"
+        "csiAttacherTimeout"
     ],
     "properties": {
         "disable": {
@@ -155,14 +155,14 @@
             "type": "boolean",
             "default": false
         },
-        "cspClientTimeout": {
-            "$id": "#/properties/cspClientTimeout",
-            "title": "CSP client timeout",
-            "description": "Change the CSP client timeout for HPE Alletra 9000, Primera and 3PAR systems",
+        "csiAttacherTimeout": {
+            "$id": "#/properties/csiAttacherTimeout",
+            "title": "CSI attacher timeout",
+            "description": "Change the CSI attacher timeout for HPE Alletra 9000, Primera and 3PAR systems",
             "type": "integer",
-            "default": 60,
-            "minimum": 60,
-            "maximum": 360
+            "default": 15,
+            "minimum": 15,
+            "maximum": 180
         },
         "global": {}
     },
